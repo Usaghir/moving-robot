@@ -1,0 +1,33 @@
+{
+  "name": "moving-robot",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint '*/**/*.{js,ts,tsx}'",
+    "lint:fix": "eslint '*/**/*.{js,ts,tsx}' --fix",
+    "format": "prettier --write '*/**/*.{js,ts,tsx,json,css,scss,md}'",
+    "prepare": "husky install",
+    "test": "jest",
+    "start-backend": "pnpm --filter backend start"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@typescript-eslint/eslint-plugin": "^8.0.1",
+    "@typescript-eslint/parser": "^8.0.1",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.4",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.8",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.4"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
