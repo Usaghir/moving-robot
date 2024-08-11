@@ -1,13 +1,20 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { loggerMiddleware } from './middleware/loggerMiddleware';
-import testRoute from './routes/testRoute';
+import robotRoutes from './routes/robotRoutes';
+import { errorHandler } from './middleware/errorHandler';
 
 const app = express();
-app.use(loggerMiddleware);
-app.use('/test', testRoute);
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World');
-});
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Middleware to log requests
+app.use(loggerMiddleware);
+
+// Route for the robots API
+app.use('/api', robotRoutes);
+
+// Middleware to handle errors
+app.use(errorHandler);
 
 export default app;
