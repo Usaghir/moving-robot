@@ -6,10 +6,12 @@ export const errorHandler = (
   req: Request,
   res: Response,
 ): void => {
-  console.error(error.stack);
   if (error instanceof Error) {
-    res.status(400).json({ error: error.message });
+    console.error('Error:', error.message);
   } else {
-    res.status(400).json({ error: 'An unknown error occurred' });
+    console.error('Unknown error:', error);
   }
+  res.status(400).json({
+    error: error instanceof Error ? error.message : 'Unknown error occurred',
+  });
 };

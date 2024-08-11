@@ -1,6 +1,6 @@
 {
   "name": "moving-robot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "lint": "eslint '*/**/*.{js,ts,tsx}'",
@@ -8,12 +8,14 @@
     "format": "prettier --write '*/**/*.{js,ts,tsx,json,css,scss,md}'",
     "prepare": "husky install",
     "test": "jest",
+    "test:watch": "jest --watch",
     "start-backend": "npm run start --prefix backend",
     "build-backend": "npm run build --prefix backend",
     "dev-backend": "npm run start:dev --prefix backend"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
+    "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
     "eslint": "^9.8.0",

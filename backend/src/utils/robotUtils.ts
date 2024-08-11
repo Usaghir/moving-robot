@@ -51,17 +51,19 @@ const moveForward = (
 };
 
 // Implement the logic to calculate the new position of the robot
-export const calculateNewPosition = (
-  [xPoistion, yPosition, direction]: [number, number, string],
+export const updatePose = (
+  [xPoistion, yPosition]: [number, number],
+  direction: string,
   instruction: string,
   [xMax, yMax]: [number, number],
-): [number, number, string] => {
+): { position: [number, number]; direction: string } => {
   // Implement the logic to calculate the new position of the robot
 
   let newXPoistion = xPoistion;
   let newYPosition = yPosition;
   let newDirection = direction;
 
+  // Update the direction or position based on the instruction
   switch (instruction) {
     case 'L':
       newDirection = turnLeft(direction);
@@ -80,14 +82,15 @@ export const calculateNewPosition = (
       break;
   }
 
+  // Check if the new position is within bounds
   if (
-    newXPoistion > xMax ||
+    newXPoistion >= xMax ||
     newXPoistion < 0 ||
-    newYPosition > yMax ||
+    newYPosition >= yMax ||
     newYPosition < 0
   ) {
     throw new Error(`ERROR: Out of bounds at ${newXPoistion} ${newYPosition}`);
   }
 
-  return [newXPoistion, newYPosition, newDirection];
+  return { position: [newXPoistion, newYPosition], direction: newDirection };
 };
