@@ -6,6 +6,6 @@ export const loggerMiddleware = (
   res: Response,
   next: NextFunction,
 ): void => {
-  console.log(`Request URL: ${req.originalUrl}`);
+  `Request URL: ${req.originalUrl}`;
   next();
 };

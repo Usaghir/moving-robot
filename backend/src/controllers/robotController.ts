@@ -33,18 +33,32 @@ export const setCustomPoseController = (req: Request, res: Response): void => {
 };
 
 // Controller to move the robot
-export const moveRobotController = (req: Request, res: Response): void => {
+export const moveRobotController = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  ('moveRobotController called');
   try {
     const instruction = req.query.command as string;
     if (!instruction) {
       res.status(400).json({ message: 'Instruction is required' });
       return;
     }
-    const newPose = moveRobot(instruction);
+
+    const validInstructions = ['L', 'R', 'F'];
+    if (!validInstructions.includes(instruction)) {
+      res.status(400).json({ message: 'Invalid instruction' });
+      return;
+    }
+    const newPose = await moveRobot(instruction);
     res.status(200).json(newPose);
   } catch (error) {
+    console.error('Error moving robot', error);
     res.status(400).json({
-      error: error instanceof Error ? error.message : 'Unknown error occurred',
+      error:
+        error instanceof Error
+          ? error.message
+          : 'Unknown error occurred while moving robot',
     });
   }
 };

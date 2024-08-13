@@ -70,49 +70,4 @@ describe('robot API', () => {
       `Invalid direction: X. Valid directions are 'N', 'E', 'S', 'W'.`,
     );
   });
-
-  // Pending Tests
-  /*
-  it('should move forward correctly within bounds', async () => {
-    await request(app)
-      .post('/api/robot/custom')
-      .send({
-        customSize: [10, 10],
-        customPosition: [5, 5],
-        customDirection: 'N',
-      });
-    const response = await request(app).get('/api/robot/move?command=F');
-    expect(response.status).toBe(200);
-    expect(response.body.robotPosition).toEqual([5, 6]);
-    expect(response.body.robotDirection).toBe('N');
-  });
-  
-  it('should throw an error for out-of-bounds movement', async () => {
-    await request(app)
-      .post('/api/robot/custom')
-      .send({
-        customSize: [10, 10],
-        customPosition: [9, 9],
-        customDirection: 'N',
-      });
-    const response = await request(app).post('/api/robot/move?command=F');
-    expect(response.status).toBe(400);
-    expect(response.body.error).toBe('ERROR: Out of bounds at 9 10');
-  });
-
-  it('should throw an error for invalid move command', async () => {
-    await request(app)
-      .post('/api/robot/custom')
-      .send({
-        customSize: [10, 10],
-        customPosition: [5, 5],
-        customDirection: 'N',
-      });
-    const response = await request(app).get('/api/robot/move?command=X');
-    expect(response.status).toBe(400);
-    expect(response.body.error).toBe(
-      "Invalid instruction: X. Valid instructions are 'L', 'R', 'F'.",
-    );
-  });
-   */
 });
